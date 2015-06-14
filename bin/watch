@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+var Dokker = require('../dokker');
+var options = Dokker.configure()
+.then(function(data){
+  return Dokker.watch(data);
+}).then(function(){
+  console.log('Watching for changes');
+}).done();

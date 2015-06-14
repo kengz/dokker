@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+var Dokker = require('../dokker');
+var path = require('path');
+var options;
+
+return Dokker.init()
+.then(function(){
+  return Dokker.configure();
+}).then(function(data){
+  options = data;
+  return Dokker.mkdir(path.join(process.cwd(), options.dir));
+}).then(function(){
+  return Dokker.copyTemplate(options);
+}).then(function(){
+  console.log('Templates copied sucessfully');
+}).done();

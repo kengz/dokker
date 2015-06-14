@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var Dokker = require('../dokker');
+var options;
+return Dokker.configure()
+.then(function(data) {
+  options = data;
+  return Dokker.mkdir(path.join(process.cwd(), options.dir));
+}).then(function() {
+  return Dokker.literate(options.literate);
+}).then(function() {
+  return Dokker.jsdocMarkdown(options.jsdoc);
+}).then(function() {
+  return Dokker.jsdocHtml(options.jsdoc);
+}).then(function() {
+  return Dokker.injectTemplate(options.jsdoc);
+}).then(function() {
+  return Dokker.createTests(options.mocha);
+}).then(function() {
+  console.log('Dokker executed successfully');
+}).done();

@@ -1,0 +1,21 @@
+{
+  "dir": "docs",
+  "literate": {
+    "source": "dokker.js",
+    "dir": "annotated"
+  },
+  "jsdoc": {
+    "title": "Dokker.js",
+    "source": "dokker.js",
+    "markdown": "README.md",
+    "html": "index.html",
+    "readme": "README.md",
+    "template": "templates/index.ejs.html",
+    "github": "https://github.com/oceanhouse21/dokker/blob/master/dokker.js"
+  },
+  "mocha": {
+    "test": "test/dokker.js",
+    "path": "tests.html",
+    "template": "templates/tests.ejs.html"
+  }
+}

@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var dokker = require('../dokker');
+return dokker.ghPages()
+.then(function(){
+  console.log('Successfully created gh-pages branch');
+}).done();

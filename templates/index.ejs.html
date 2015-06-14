@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" id="docs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="styles.css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+</head>
+<body>
+  <div class="toc-container">
+    <h2><code><a href="http://dokkerjs.com/"><%= title %></a></code></h2>
+    <ul>
+      <li><a href="#">Introduction</a></li>
+      <li><a href="https://github.com/oceanhouse21/dokker">Github Repository</a></li>
+      <li><a href="tests.html">Test suite</a></li>
+      <li><a href="annotated/dokker.html">Annotated Source</a></li>
+    </ul>
+    <%- apiToc %>
+  </div>
+  <div class="doc-container">
+    <div>  
+      <%- readme %>
+      <h2>API documentation</h2>
+      <%- apiDoc %>
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+</body>
+</html>
