@@ -1,7 +1,7 @@
 //     Dokker.js 0.0.1
 //     http://dokker.oceanhouse21.com
 //     (c) 2014-2015 Georg Schlenkhoff and Oceanhouse21
-//     Underscore may be freely distributed under the MIT license.
+//     Dokker.js may be freely distributed under the MIT license.
 
 'use strict';
 
