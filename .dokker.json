@@ -14,6 +14,7 @@
     "github": "https://github.com/oceanhouse21/dokker/blob/master/dokker.js"
   },
   "mocha": {
+    "command": "mocha --reporter doc",
     "test": "test/dokker.js",
     "path": "tests.html",
     "template": "templates/tests.ejs.html"
