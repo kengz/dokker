@@ -121,7 +121,9 @@ Dokker.injectTemplate = function(options) {
 Dokker.createTests = function(options) {
   return new Promise(function(resolve, reject) {
     var template, tests;
-    exec('mocha --reporter doc', function(error, stdout) {
+    // allows specification of mocha.command in .dokker.json, e.g. 'mocha -u tdd --reporter doc'
+    var cmd = options.command || 'mocha --reporter doc';
+    exec(cmd, function(error, stdout) {
       if(error) return reject(error);
       tests = stdout;
       return read(options.template, 'utf8')
@@ -378,6 +380,8 @@ Dokker.configure = function(options) {
       data.jsdoc.template = (data.jsdoc.template) ? path.join(process.cwd(), data.jsdoc.template) : path.join(__dirname, 'templates/index.ejs.html');
       data.mocha.template = (data.mocha.template) ? path.join(process.cwd(), data.mocha.template) : path.join(__dirname, 'templates/tests.ejs.html');
       data.mocha.path = path.join(process.cwd(), data.dir, data.mocha.path);
+      // specifies mocha command in .dokker.json; e.g. mocha -u tdd -R spec
+      data.mocha.command = path.join(process.cwd(), data.dir, data.mocha.command);
       data.literate.dir = path.join(process.cwd(), data.dir, data.literate.dir);
       data.jsdoc.markdown = path.join(process.cwd(), data.dir, data.jsdoc.markdown);
       data.jsdoc.html = path.join(process.cwd(), data.dir, data.jsdoc.html);
