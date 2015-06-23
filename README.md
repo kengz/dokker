@@ -62,3 +62,8 @@ If you want to deploy your documentation to Github Pages, run ```./node_modules/
   * [Release Notes](https://github.com/oceanhouse21/dokker/releases)
   * [Roadmap](https://github.com/oceanhouse21/dokker/wiki/Roadmap)
   * [More Resources](https://github.com/oceanhouse21/dokker/wiki/Resources)
+
+## Contributors
+
+ * [georgschlenkhoff](https://github.com/georgschlenkhoff)
+ * [kengz](https://github.com/kengz)
