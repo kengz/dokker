@@ -23,10 +23,40 @@ body {
     min-height: 100%
 }
 code {
-    font-family: Consolas, Courier New, monospace
+    font-family: 'Source Code Pro', Consolas, 'Courier New', monospace;
+    letter-spacing: 0.03em;
+}
+.lang-js {
+  color: #78dbf9;
+}
+span.hljs-number {
+  color: #d59cf6;
+}
+span.hljs-string{
+  color: #8bdb97;
+}
+span.hljs-regexp{
+  color: #dbad83;
+}
+span.hljs-literal{
+  color: #e26a78;
+}
+span.hljs-keyword{
+  color: #d59cf6;
+}
+span.hljs-comment {
+  color: #99a4c7;
+}
+span.hljs-special {
+  color: #bdc4df;
 }
 pre {
-    background: #000;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.137255);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.0980392);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.0823529);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #2b303b;
     margin: 1em 0;
     padding: .5em 20px;
     overflow-x: scroll;
@@ -190,8 +220,15 @@ pre .sy0 {
 #docs a.alias {
     opacity: .5
 }
+#docs div div div div {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.137255);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.0980392);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.0823529);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /*padding-bottom: 0.5em;*/
+}
 #docs div div div {
-    border: 1px solid #d3d3d3;
     border-top: 0;
     margin: 0 .5em 1em
 }
@@ -219,16 +256,15 @@ pre .sy0 {
     margin: .5em 0 0
 }
 #docs h3 {
-    background: #663819;
-    box-shadow: 0 .25em .5em #d3d3d3;
-    border-top: 1px solid #d3d3d3;
-    border-bottom: 1px solid #d3d3d3;
+    background: rgb(63, 107, 196);
+    border-radius: 3px 3px 0 0;
+    border: 1px solid rgba(75, 71, 71, 0.14);
     margin: .5em 0;
-    padding: .75em 0 .75em 10px;
+    padding: .8em 0 .8em 10px;
     position: relative
 }
 #docs h3>code {
-    color: #eee
+    color: #fbfbfb
 }
 #docs h3 a {
     position: absolute;
@@ -352,12 +388,6 @@ pre .sy0 {
     #docs .doc-container .first-heading {
         margin-top: 0
     }
-}
-span.hljs-string{
-  color:#FAFF02;
-}
-span.hljs-keyword{
-  color: #5AF700;
 }
 @media (-ms-high-contrast: active) and (max-width: 1280px),
 (-ms-high-contrast: none) and (max-width: 1280px) {

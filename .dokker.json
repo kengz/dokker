@@ -11,7 +11,8 @@
     "html": "index.html",
     "readme": "README.md",
     "template": "templates/index.ejs.html",
-    "github": "https://github.com/oceanhouse21/dokker/blob/master/dokker.js"
+    "github": "https://github.com/oceanhouse21/dokker/blob/master/dokker.js",
+    "site": "http://dokkerjs.com"
   },
   "mocha": {
     "command": "mocha --reporter doc",

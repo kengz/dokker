@@ -81,7 +81,13 @@ Dokker.injectTemplate = function(options) {
         apiToc: $('.toc-container').html(),
         readme: readme,
         apiDoc: $('.doc-container').html(),
+        // correctly setting links to your github/pages
+        page_url: options.site,
         title: options.title,
+        github_url: options.github,
+        // fixed reference to generated annotation
+        // the 'literate' in .dokker.json shall not require a source since it's never used.
+        annotated_path: 'annotated/'+options.source
       });
     }).then(function(data) {
       return write(options.html, data, 'utf8');

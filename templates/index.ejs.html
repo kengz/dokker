@@ -10,12 +10,12 @@
 </head>
 <body>
   <div class="toc-container">
-    <h2><code><a href="http://dokkerjs.com/"><%= title %></a></code></h2>
+    <h2><code><a href=<%= page_url %>><%= title %></a></code></h2>
     <ul>
       <li><a href="#">Introduction</a></li>
-      <li><a href="https://github.com/oceanhouse21/dokker">Github Repository</a></li>
+      <li><a href=<%= github_url %>>Github Repository</a></li>
       <li><a href="tests.html">Test suite</a></li>
-      <li><a href="annotated/dokker.html">Annotated Source</a></li>
+      <li><a href=<%= annotated_path %>>Annotated Source</a></li>
     </ul>
     <%- apiToc %>
   </div>
