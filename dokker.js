@@ -26,11 +26,11 @@ var Dokker = {};
  * @memberOf Dokker
  * @type string
  */
-Dokker.VERSION = '0.1.2';
+Dokker.VERSION = '0.1.0';
 
 /**
  * Creates a HTML file that transcludes the HTML snippet that was created
- * by the docdown module into an ejs template which is defined by the
+ * by the docdown module into an ejs template which is defined by the 
  * .dokker.json configuration file.
  *
  * @static
@@ -66,36 +66,36 @@ Dokker.injectTemplate = function(options) {
   return new Promise(function(resolve, reject) {
     var template, body, html, readme, $;
     return read(options.template, 'utf8')
-      .then(function(data) {
-        template = data;
-        return read(options.readme, 'utf8');
-      }).then(function(data) {
-        readme = marked(data);
-        $ = cheerio.load(readme);
-        $('h1').remove();
-        readme = $.html();
-        return read(options.html, 'utf8');
-      }).then(function(data) {
-        $ = cheerio.load(data);
-        return ejs.render(template, {
-          apiToc: $('.toc-container').html(),
-          readme: readme,
-          apiDoc: $('.doc-container').html(),
-          // correctly setting links to your github/pages
-          page_url: options.site,
-          title: options.title,
-          github_url: options.github,
-          // fixed reference to generated annotation
-          // the 'literate' in .dokker.json shall not require a source since it's never used.
-          annotated_path: 'annotated/' + options.source
-        });
-      }).then(function(data) {
-        return write(options.html, data, 'utf8');
-      }).then(function() {
-        resolve();
-      }).then(null, function(err) {
-        reject(err);
+    .then(function(data) {
+      template = data;
+      return read(options.readme, 'utf8');
+    }).then(function(data) {
+      readme = marked(data);
+      $ = cheerio.load(readme);
+      $('h1').remove();
+      readme = $.html();
+      return read(options.html, 'utf8');
+    }).then(function(data) {
+      $ = cheerio.load(data);
+      return ejs.render(template, {
+        apiToc: $('.toc-container').html(),
+        readme: readme,
+        apiDoc: $('.doc-container').html(),
+        // correctly setting links to your github/pages
+        page_url: options.site,
+        title: options.title,
+        github_url: options.github,
+        // fixed reference to generated annotation
+        // the 'literate' in .dokker.json shall not require a source since it's never used.
+        annotated_path: 'annotated/'+options.source
       });
+    }).then(function(data) {
+      return write(options.html, data, 'utf8');
+    }).then(function() {
+      resolve();
+    }).then(null, function(err) {
+      reject(err);
+    });
   });
 };
 
@@ -130,21 +130,19 @@ Dokker.createTests = function(options) {
     // allows specification of mocha.command in .dokker.json, e.g. 'mocha -u tdd --reporter doc'
     var cmd = options.command || 'mocha --reporter doc';
     exec(cmd, function(error, stdout) {
-      if (error) return reject(error);
+      if(error) return reject(error);
       tests = stdout;
       return read(options.template, 'utf8')
-        .then(function(data) {
-          template = data;
-          return ejs.render(template, {
-            tests: tests
-          });
-        }).then(function(data) {
-          return write(options.path, data, 'utf8');
-        }).then(function() {
-          resolve();
-        }).then(null, function(err) {
-          reject(err);
-        });
+      .then(function(data) {
+        template = data;
+        return ejs.render(template, {tests: tests});
+      }).then(function(data) {
+        return write(options.path, data, 'utf8');
+      }).then(function() {
+        resolve();
+      }).then(null, function(err) {
+        reject(err);
+      });
     });
   });
 };
@@ -168,12 +166,12 @@ Dokker.createTests = function(options) {
  */
 // Extract docs folder to separate git branch and finally push branch to
 // Github repository
-Dokker.ghPages = function() {
+Dokker.ghPages = function(){
   return new Promise(function(resolve, reject) {
     exec('git subtree split -P docs -b gh-pages', function(error, stdout, stderr) {
-      if (error) return reject(stderr);
+      if(error) return reject(stderr);
       exec('git push origin gh-pages', function(error, stdout, stderr) {
-        if (error) return reject(stderr);
+        if(error) return reject(stderr);
         resolve();
       });
     });
@@ -207,23 +205,23 @@ Dokker.ghPages = function() {
  */
 // Create an HTML file from any source code comments in the style of
 // [literate programming](https://de.wikipedia.org/wiki/Literate_programming)
-Dokker.literate = function(options) {
+Dokker.literate = function (options) {
   return new Promise(function(resolve, reject) {
     var tmpDir = path.join(process.cwd(), '/.tmp');
     var tmpFile = path.join(tmpDir, options.source);
     return read(path.join(process.cwd(), options.source), 'utf8')
-      .then(function(data) {
-        var source = data.replace(/^\s*(\*|\/\*).*[\r\n]/gm, '');
-        return Dokker.mkdir(tmpDir)
-          .then(function() {
-            return write(tmpFile, source, 'utf8');
-          }).then(function() {
-            docco.run(['', '', tmpFile, '-o', options.dir]);
-            resolve();
-          });
-      }).then(null, function(err) {
-        if (err) return reject(err);
+    .then(function(data) {
+      var source = data.replace(/^\s*(\*|\/\*).*[\r\n]/gm, '');
+      return Dokker.mkdir(tmpDir)
+      .then(function() {
+        return write(tmpFile, source, 'utf8');
+      }).then(function(){
+        docco.run(['', '', tmpFile, '-o', options.dir]);
+        resolve();
       });
+    }).then(null, function(err) {
+      if (err) return reject(err);
+    });
   });
 };
 
@@ -253,34 +251,34 @@ Dokker.literate = function(options) {
  * });
  */
 // Convert markdown from any source code comments with docdown module.
-Dokker.jsdocMarkdown = function(options) {
+Dokker.jsdocMarkdown = function (options) {
   return new Promise(function(resolve, reject) {
     var source, tmpFile, tmpDir;
     return read(path.join(process.cwd(), options.source), 'utf8')
-      .then(function(data) {
-        source = data.replace(/^\s*(\/\/).*[\r\n]/gm, '');
-        tmpDir = path.join(process.cwd(), '/.tmp');
-        return Dokker.mkdir(tmpDir);
-      }).then(function() {
-        tmpFile = path.join(tmpDir, options.source);
-        return write(tmpFile, source, 'utf8');
-      }).then(function() {
-        var markdown = docdown({
-          'path': tmpFile,
-          'url': options.github,
-          'toc': 'categories'
-        });
-        return write(options.markdown, markdown, 'utf8');
-      }).then(function() {
-        resolve();
-      }).then(null, function(err) {
-        reject(err);
+    .then(function(data){
+      source = data.replace(/^\s*(\/\/).*[\r\n]/gm, '');
+      tmpDir = path.join(process.cwd(), '/.tmp');
+      return Dokker.mkdir(tmpDir);
+    }).then(function(){
+      tmpFile = path.join(tmpDir, options.source);
+      return write(tmpFile, source, 'utf8');
+    }).then(function(){
+      var markdown = docdown({
+        'path': tmpFile,
+        'url': options.github,
+        'toc': 'categories'
       });
+      return write(options.markdown, markdown, 'utf8');
+    }).then(function() {
+      resolve();
+    }).then(null, function(err) {
+      reject(err);
+    });
   });
 };
 
 /**
- * Create an HTML file from the Markdown file that was create with
+ * Create an HTML file from the Markdown file that was create with 
  * [Dokker.jsdocMarkdown()](#Dokker-jsdocMarkdown)
  *
  * @static
@@ -303,17 +301,17 @@ Dokker.jsdocMarkdown = function(options) {
  */
 // Create an HTML file from any source code comments in the style of
 // [literate programming](https://de.wikipedia.org/wiki/Literate_programming)
-Dokker.jsdocHtml = function(options) {
+Dokker.jsdocHtml = function (options) {
   return new Promise(function(resolve, reject) {
     return read(options.markdown, 'utf8')
-      .then(function(data) {
-        var html = marked(data).replace(/<!-- /g, '<').replace(/ -->/g, '>');
-        return write(options.html, html, 'utf8');
-      }).then(function() {
-        resolve();
-      }).then(null, function(err) {
-        reject(err);
-      });
+    .then(function(data) {
+      var html = marked(data).replace(/<!-- /g,'<').replace(/ -->/g,'>');
+      return write(options.html, html, 'utf8');
+    }).then(function() {
+      resolve();
+    }).then(null, function(err) {
+      reject(err);
+    });
   });
 };
 
@@ -380,24 +378,25 @@ Dokker.mkdir = function(dir) {
  */
 // Parses the options file, .Dokker.json, and sets the default parameters.
 Dokker.configure = function(options) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve, reject){
     var file = path.join(process.cwd(), '.dokker.json');
     return read(file, 'utf8')
-      .then(function(data) {
-        data = JSON.parse(data);
-        data.jsdoc.template = (data.jsdoc.template) ? path.join(process.cwd(), data.jsdoc.template) : path.join(__dirname, 'templates/index.ejs.html');
-        data.mocha.template = (data.mocha.template) ? path.join(process.cwd(), data.mocha.template) : path.join(__dirname, 'templates/tests.ejs.html');
-        data.mocha.path = path.join(process.cwd(), data.dir, data.mocha.path);
-        // specifies mocha command in .dokker.json; e.g. mocha -u tdd -R spec
-        // data.mocha.command = path.join(process.cwd(), data.dir, data.mocha.command);
-        data.literate.dir = path.join(process.cwd(), data.dir, data.literate.dir);
-        data.jsdoc.markdown = path.join(process.cwd(), data.dir, data.jsdoc.markdown);
-        data.jsdoc.html = path.join(process.cwd(), data.dir, data.jsdoc.html);
-        data.jsdoc.readme = path.join(process.cwd(), data.jsdoc.readme);
-        resolve(data);
-      }).then(null, function(err) {
-        reject(err);
-      });
+    .then(function(data) {
+      data = JSON.parse(data);
+      data.jsdoc.template = (data.jsdoc.template) ? path.join(process.cwd(), data.jsdoc.template) : path.join(__dirname, 'templates/index.ejs.html');
+      data.mocha.template = (data.mocha.template) ? path.join(process.cwd(), data.mocha.template) : path.join(__dirname, 'templates/tests.ejs.html');
+      data.mocha.path = path.join(process.cwd(), data.dir, data.mocha.path);
+      // mocha.command commented out to fix build-breaking bug
+      // specifies mocha command in .dokker.json; e.g. mocha -u tdd -R spec
+      // data.mocha.command = path.join(process.cwd(), data.dir, data.mocha.command);
+      data.literate.dir = path.join(process.cwd(), data.dir, data.literate.dir);
+      data.jsdoc.markdown = path.join(process.cwd(), data.dir, data.jsdoc.markdown);
+      data.jsdoc.html = path.join(process.cwd(), data.dir, data.jsdoc.html);
+      data.jsdoc.readme = path.join(process.cwd(), data.jsdoc.readme);
+      resolve(data);
+    }).then(null, function(err) {
+      reject(err);
+    });
   });
 };
 
@@ -428,18 +427,18 @@ Dokker.copyTemplate = function(options) {
   return new Promise(function(resolve, reject) {
     var templatesDir = path.join(process.cwd(), 'templates');
     return Dokker.mkdir(templatesDir)
-      .then(function() {
-        var oldStyle = path.join(__dirname, 'templates', 'styles.css');
-        var newStyle = path.join(process.cwd(), options.dir, 'styles.css');
-        fs.createReadStream(oldStyle).pipe(fs.createWriteStream(newStyle));
-        var oldLogo = path.join(__dirname, 'templates', 'logo.png');
-        var newLogo = path.join(process.cwd(), options.dir, 'logo.png');
-        fs.createReadStream(oldLogo).pipe(fs.createWriteStream(newLogo));
-        var oldApp = path.join(__dirname, 'templates', 'app.js');
-        var newApp = path.join(process.cwd(), options.dir, 'app.js');
-        fs.createReadStream(oldApp).pipe(fs.createWriteStream(newApp));
-        resolve();
-      });
+    .then(function() {
+      var oldStyle = path.join(__dirname, 'templates', 'styles.css');
+      var newStyle = path.join(process.cwd(), options.dir, 'styles.css');
+      fs.createReadStream(oldStyle).pipe(fs.createWriteStream(newStyle));
+      var oldLogo = path.join(__dirname, 'templates', 'logo.png');
+      var newLogo = path.join(process.cwd(), options.dir, 'logo.png');
+      fs.createReadStream(oldLogo).pipe(fs.createWriteStream(newLogo));
+      var oldApp = path.join(__dirname, 'templates', 'app.js');
+      var newApp = path.join(process.cwd(), options.dir, 'app.js');
+      fs.createReadStream(oldApp).pipe(fs.createWriteStream(newApp));
+      resolve();
+    });
   });
 };
 
@@ -459,7 +458,7 @@ Dokker.copyTemplate = function(options) {
  * });
  */
 // Copies the .Dokker.json file to bootstrap any Dokker project.
-Dokker.init = function() {
+Dokker.init = function(){
   return new Promise(function(resolve, reject) {
     var oldDok = path.join(__dirname, '.dokker.json');
     var newDok = path.join(process.cwd(), '.dokker.json');
@@ -487,10 +486,9 @@ Dokker.init = function() {
 // Starts the Node.js/Express server to watch Dokker.js project
 // documentation.
 Dokker.watch = function(options) {
-  // replacing watch cmd with gulp exported from gulpfile
   var gulpex = require(__dirname + '/gulpfile.js').gulpex;
   return gulpex();
-  // return new Promise(function(resolve, reject){
+  // return new Promise(function(resolve, reject){ 
   //   exec('DIR='+ options.dir + ' node ' + options.dir + '/app.js', function(error, stdout, stderr){
   //     if(error) return reject(stderr);
   //   });
