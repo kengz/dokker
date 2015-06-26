@@ -26,7 +26,7 @@ var Dokker = {};
  * @memberOf Dokker
  * @type string
  */
-Dokker.VERSION = '0.1.0';
+ Dokker.VERSION = '0.1.0';
 
 /**
  * Creates a HTML file that transcludes the HTML snippet that was created
@@ -58,7 +58,7 @@ Dokker.VERSION = '0.1.0';
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Transclude in a ejs template file the HTML snippet that was ultimately
 // created with docdown. Also tweak the HTML page a bit and finally
 // inject the README.md.
@@ -121,7 +121,7 @@ Dokker.injectTemplate = function(options) {
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Create a HTML site from any mocha tests find when executing mocha
 // --reporter doc terminal command.
 Dokker.createTests = function(options) {
@@ -163,7 +163,7 @@ Dokker.createTests = function(options) {
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Extract docs folder to separate git branch and finally push branch to
 // Github repository
 Dokker.ghPages = function(){
@@ -202,7 +202,7 @@ Dokker.ghPages = function(){
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Create an HTML file from any source code comments in the style of
 // [literate programming](https://de.wikipedia.org/wiki/Literate_programming)
 Dokker.literate = function (options) {
@@ -249,7 +249,7 @@ Dokker.literate = function (options) {
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Convert markdown from any source code comments with docdown module.
 Dokker.jsdocMarkdown = function (options) {
   return new Promise(function(resolve, reject) {
@@ -266,7 +266,7 @@ Dokker.jsdocMarkdown = function (options) {
       var markdown = docdown({
         'path': tmpFile,
         'url': options.github,
-        'toc': 'categories',
+        'toc': 'categories'
       });
       return write(options.markdown, markdown, 'utf8');
     }).then(function() {
@@ -298,7 +298,7 @@ Dokker.jsdocMarkdown = function (options) {
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Create an HTML file from any source code comments in the style of
 // [literate programming](https://de.wikipedia.org/wiki/Literate_programming)
 Dokker.jsdocHtml = function (options) {
@@ -375,7 +375,7 @@ Dokker.mkdir = function(dir) {
  *   // => object with absolute pathes to the directory from
  *   // which the command was executed
  * });
- */
+*/
 // Parses the options file, .Dokker.json, and sets the default parameters.
 Dokker.configure = function(options) {
   return new Promise(function(resolve, reject){
@@ -387,7 +387,7 @@ Dokker.configure = function(options) {
       data.mocha.template = (data.mocha.template) ? path.join(process.cwd(), data.mocha.template) : path.join(__dirname, 'templates/tests.ejs.html');
       data.mocha.path = path.join(process.cwd(), data.dir, data.mocha.path);
       // specifies mocha command in .dokker.json; e.g. mocha -u tdd -R spec
-      data.mocha.command = path.join(process.cwd(), data.dir, data.mocha.command);
+      // data.mocha.command = path.join(process.cwd(), data.dir, data.mocha.command);
       data.literate.dir = path.join(process.cwd(), data.dir, data.literate.dir);
       data.jsdoc.markdown = path.join(process.cwd(), data.dir, data.jsdoc.markdown);
       data.jsdoc.html = path.join(process.cwd(), data.dir, data.jsdoc.html);
@@ -420,7 +420,7 @@ Dokker.configure = function(options) {
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Copy starter template to bootstrap any Dokker project.
 Dokker.copyTemplate = function(options) {
   return new Promise(function(resolve, reject) {
@@ -455,7 +455,7 @@ Dokker.copyTemplate = function(options) {
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Copies the .Dokker.json file to bootstrap any Dokker project.
 Dokker.init = function(){
   return new Promise(function(resolve, reject) {
@@ -481,15 +481,18 @@ Dokker.init = function(){
  * .then(function(){
  *   // => resolved promise
  * });
- */
+*/
 // Starts the Node.js/Express server to watch Dokker.js project
 // documentation.
 Dokker.watch = function(options) {
-  return new Promise(function(resolve, reject){ 
-    exec('DIR='+ options.dir + ' node ' + options.dir + '/app.js', function(error, stdout, stderr){
-      if(error) return reject(stderr);
-    });
-  });
+  // replacing watch cmd with gulp exported from gulpfile
+  var gulpex = require(__dirname+'/gulpfile.js').gulpex;
+  return gulpex();
+  // return new Promise(function(resolve, reject){ 
+  //   exec('DIR='+ options.dir + ' node ' + options.dir + '/app.js', function(error, stdout, stderr){
+  //     if(error) return reject(stderr);
+  //   });
+  // });
 };
 
 module.exports = Dokker;
