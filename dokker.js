@@ -424,16 +424,20 @@ Dokker.configure = function(options) {
 // Copy starter template to bootstrap any Dokker project.
 Dokker.copyTemplate = function(options) {
   return new Promise(function(resolve, reject) {
-    var oldStyle = path.join(__dirname, 'templates', 'styles.css');
-    var newStyle = path.join(process.cwd(), options.dir, 'styles.css');
-    fs.createReadStream(oldStyle).pipe(fs.createWriteStream(newStyle));
-    var oldLogo = path.join(__dirname, 'templates', 'logo.png');
-    var newLogo = path.join(process.cwd(), options.dir, 'logo.png');
-    fs.createReadStream(oldLogo).pipe(fs.createWriteStream(newLogo));
-    var oldApp = path.join(__dirname, 'templates', 'app.js');
-    var newApp = path.join(process.cwd(), options.dir, 'app.js');
-    fs.createReadStream(oldApp).pipe(fs.createWriteStream(newApp));
-    resolve();
+    var templatesDir = path.join(process.cwd(), 'templates');
+    return Dokker.mkdir(templatesDir)
+    .then(function() {
+      var oldStyle = path.join(__dirname, 'templates', 'styles.css');
+      var newStyle = path.join(process.cwd(), options.dir, 'styles.css');
+      fs.createReadStream(oldStyle).pipe(fs.createWriteStream(newStyle));
+      var oldLogo = path.join(__dirname, 'templates', 'logo.png');
+      var newLogo = path.join(process.cwd(), options.dir, 'logo.png');
+      fs.createReadStream(oldLogo).pipe(fs.createWriteStream(newLogo));
+      var oldApp = path.join(__dirname, 'templates', 'app.js');
+      var newApp = path.join(process.cwd(), options.dir, 'app.js');
+      fs.createReadStream(oldApp).pipe(fs.createWriteStream(newApp));
+      resolve();
+    });
   });
 };
 
