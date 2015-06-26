@@ -1,6 +1,6 @@
 {
   "name": "dokker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dokker.js creates professional Javascript code documentations.",
   "main": "dokker.js",
   "scripts": {
