@@ -26,7 +26,7 @@ var Dokker = {};
  * @memberOf Dokker
  * @type string
  */
-Dokker.VERSION = '0.1.0';
+Dokker.VERSION = '0.1.2';
 
 /**
  * Creates a HTML file that transcludes the HTML snippet that was created
