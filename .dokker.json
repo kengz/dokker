@@ -1,6 +1,7 @@
 {
   "dir": "docs",
   "literate": {
+    "source": "dokker.js",
     "dir": "annotated"
   },
   "jsdoc": {
