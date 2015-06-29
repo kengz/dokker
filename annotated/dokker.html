@@ -30,7 +30,7 @@
               <pre><code>Dokker.js <span class="hljs-number">0.0</span>.1
 http:<span class="hljs-comment">//dokker.oceanhouse21.com</span>
 (c) <span class="hljs-number">2014</span>-<span class="hljs-number">2015</span> Georg Schlenkhoff and Oceanhouse21
-Underscore may be freely distributed under the MIT license.
+Dokker.js may be freely distributed under the MIT license.
 </code></pre>
             </div>
             
@@ -62,7 +62,7 @@ Underscore may be freely distributed under the MIT license.
 <span class="hljs-keyword">var</span> cheerio = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cheerio'</span>);
 <span class="hljs-keyword">var</span> exec = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).exec;
 <span class="hljs-keyword">var</span> Dokker = {};
-Dokker.VERSION = <span class="hljs-string">'0.1.0'</span>;</pre></div></div>
+Dokker.VERSION = <span class="hljs-string">'0.1.2'</span>;</pre></div></div>
             
         </li>
         
@@ -97,8 +97,40 @@ inject the README.md.</p>
       <span class="hljs-keyword">return</span> ejs.render(template, {
         apiToc: $(<span class="hljs-string">'.toc-container'</span>).html(),
         readme: readme,
-        apiDoc: $(<span class="hljs-string">'.doc-container'</span>).html(),
+        apiDoc: $(<span class="hljs-string">'.doc-container'</span>).html(),</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>correctly setting links to your github/pages</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        page_url: options.site,
         title: options.title,
+        github_url: options.github,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>fixed reference to generated annotation
+the ‘literate’ in .dokker.json shall not require a source since it’s never used.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        annotated_path: <span class="hljs-string">'annotated/'</span>+options.source
       });
     }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
       <span class="hljs-keyword">return</span> write(options.html, data, <span class="hljs-string">'utf8'</span>);
@@ -113,11 +145,11 @@ inject the README.md.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Create a HTML site from any mocha tests find when executing mocha
 —reporter doc terminal command.</p>
@@ -126,8 +158,23 @@ inject the README.md.</p>
             
             <div class="content"><div class='highlight'><pre>Dokker.createTests = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
-    <span class="hljs-keyword">var</span> template, tests;
-    exec(<span class="hljs-string">'mocha --reporter doc'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, stdout</span>) </span>{
+    <span class="hljs-keyword">var</span> template, tests;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>allows specification of mocha.command in .dokker.json, e.g. ‘mocha -u tdd —reporter doc’</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> cmd = options.command || <span class="hljs-string">'mocha --reporter doc'</span>;
+    exec(cmd, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, stdout</span>) </span>{
       <span class="hljs-keyword">if</span>(error) <span class="hljs-keyword">return</span> reject(error);
       tests = stdout;
       <span class="hljs-keyword">return</span> read(options.template, <span class="hljs-string">'utf8'</span>)
@@ -148,11 +195,11 @@ inject the README.md.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Extract docs folder to separate git branch and finally push branch to
 Github repository</p>
@@ -174,11 +221,11 @@ Github repository</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Create an HTML file from any source code comments in the style of
 <a href="https://de.wikipedia.org/wiki/Literate_programming">literate programming</a></p>
@@ -208,11 +255,11 @@ Github repository</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Convert markdown from any source code comments with docdown module.</p>
 
@@ -233,7 +280,7 @@ Github repository</p>
       <span class="hljs-keyword">var</span> markdown = docdown({
         <span class="hljs-string">'path'</span>: tmpFile,
         <span class="hljs-string">'url'</span>: options.github,
-        <span class="hljs-string">'toc'</span>: <span class="hljs-string">'categories'</span>,
+        <span class="hljs-string">'toc'</span>: <span class="hljs-string">'categories'</span>
       });
       <span class="hljs-keyword">return</span> write(options.markdown, markdown, <span class="hljs-string">'utf8'</span>);
     }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -247,11 +294,11 @@ Github repository</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Create an HTML file from any source code comments in the style of
 <a href="https://de.wikipedia.org/wiki/Literate_programming">literate programming</a></p>
@@ -275,11 +322,11 @@ Github repository</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Internal helper function that creates any directory if not existing.</p>
 
@@ -303,11 +350,11 @@ Github repository</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Parses the options file, .Dokker.json, and sets the default parameters.</p>
 
@@ -321,8 +368,24 @@ Github repository</p>
       data = <span class="hljs-built_in">JSON</span>.parse(data);
       data.jsdoc.template = (data.jsdoc.template) ? path.join(process.cwd(), data.jsdoc.template) : path.join(__dirname, <span class="hljs-string">'templates/index.ejs.html'</span>);
       data.mocha.template = (data.mocha.template) ? path.join(process.cwd(), data.mocha.template) : path.join(__dirname, <span class="hljs-string">'templates/tests.ejs.html'</span>);
-      data.mocha.path = path.join(process.cwd(), data.dir, data.mocha.path);
-      data.literate.dir = path.join(process.cwd(), data.dir, data.literate.dir);
+      data.mocha.path = path.join(process.cwd(), data.dir, data.mocha.path);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>mocha.command commented out to fix build-breaking bug
+specifies mocha command in .dokker.json; e.g. mocha -u tdd -R spec
+data.mocha.command = path.join(process.cwd(), data.dir, data.mocha.command);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      data.literate.dir = path.join(process.cwd(), data.dir, data.literate.dir);
       data.jsdoc.markdown = path.join(process.cwd(), data.dir, data.jsdoc.markdown);
       data.jsdoc.html = path.join(process.cwd(), data.dir, data.jsdoc.html);
       data.jsdoc.readme = path.join(process.cwd(), data.jsdoc.readme);
@@ -336,11 +399,11 @@ Github repository</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Copy starter template to bootstrap any Dokker project.</p>
 
@@ -348,27 +411,31 @@ Github repository</p>
             
             <div class="content"><div class='highlight'><pre>Dokker.copyTemplate = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
-    <span class="hljs-keyword">var</span> oldStyle = path.join(__dirname, <span class="hljs-string">'templates'</span>, <span class="hljs-string">'styles.css'</span>);
-    <span class="hljs-keyword">var</span> newStyle = path.join(process.cwd(), options.dir, <span class="hljs-string">'styles.css'</span>);
-    fs.createReadStream(oldStyle).pipe(fs.createWriteStream(newStyle));
-    <span class="hljs-keyword">var</span> oldLogo = path.join(__dirname, <span class="hljs-string">'templates'</span>, <span class="hljs-string">'logo.png'</span>);
-    <span class="hljs-keyword">var</span> newLogo = path.join(process.cwd(), options.dir, <span class="hljs-string">'logo.png'</span>);
-    fs.createReadStream(oldLogo).pipe(fs.createWriteStream(newLogo));
-    <span class="hljs-keyword">var</span> oldApp = path.join(__dirname, <span class="hljs-string">'templates'</span>, <span class="hljs-string">'app.js'</span>);
-    <span class="hljs-keyword">var</span> newApp = path.join(process.cwd(), options.dir, <span class="hljs-string">'app.js'</span>);
-    fs.createReadStream(oldApp).pipe(fs.createWriteStream(newApp));
-    resolve();
+    <span class="hljs-keyword">var</span> templatesDir = path.join(process.cwd(), <span class="hljs-string">'templates'</span>);
+    <span class="hljs-keyword">return</span> Dokker.mkdir(templatesDir)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> oldStyle = path.join(__dirname, <span class="hljs-string">'templates'</span>, <span class="hljs-string">'styles.css'</span>);
+      <span class="hljs-keyword">var</span> newStyle = path.join(process.cwd(), options.dir, <span class="hljs-string">'styles.css'</span>);
+      fs.createReadStream(oldStyle).pipe(fs.createWriteStream(newStyle));
+      <span class="hljs-keyword">var</span> oldLogo = path.join(__dirname, <span class="hljs-string">'templates'</span>, <span class="hljs-string">'logo.png'</span>);
+      <span class="hljs-keyword">var</span> newLogo = path.join(process.cwd(), options.dir, <span class="hljs-string">'logo.png'</span>);
+      fs.createReadStream(oldLogo).pipe(fs.createWriteStream(newLogo));
+      <span class="hljs-keyword">var</span> oldApp = path.join(__dirname, <span class="hljs-string">'templates'</span>, <span class="hljs-string">'app.js'</span>);
+      <span class="hljs-keyword">var</span> newApp = path.join(process.cwd(), options.dir, <span class="hljs-string">'app.js'</span>);
+      fs.createReadStream(oldApp).pipe(fs.createWriteStream(newApp));
+      resolve();
+    });
   });
 };</pre></div></div>
             
         </li>
         
         
-        <li id="section-12">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Copies the .Dokker.json file to bootstrap any Dokker project.</p>
 
@@ -386,11 +453,11 @@ Github repository</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Starts the Node.js/Express server to watch Dokker.js project
 documentation.</p>
@@ -398,12 +465,27 @@ documentation.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>Dokker.watch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{ 
-    exec(<span class="hljs-string">'DIR='</span>+ options.dir + <span class="hljs-string">' node '</span> + options.dir + <span class="hljs-string">'/app.js'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, stdout, stderr</span>)</span>{
-      <span class="hljs-keyword">if</span>(error) <span class="hljs-keyword">return</span> reject(stderr);
-    });
+  <span class="hljs-keyword">var</span> gulpex = <span class="hljs-built_in">require</span>(__dirname + <span class="hljs-string">'/gulpfile.js'</span>).gulpex;
+  <span class="hljs-keyword">return</span> gulpex();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>return new Promise(function(resolve, reject){ 
+  exec(‘DIR=’+ options.dir + ‘ node ‘ + options.dir + ‘/app.js’, function(error, stdout, stderr){
+    if(error) return reject(stderr);
   });
-};
+});</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>};
 
 <span class="hljs-built_in">module</span>.exports = Dokker;</pre></div></div>
             

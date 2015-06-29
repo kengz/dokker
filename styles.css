@@ -23,6 +23,7 @@ body {
     min-height: 100%
 }
 code {
+    /*font-family: 'Roboto', 'Helvetica Neue', sans-serif;*/
     font-family: 'Source Code Pro', Consolas, 'Courier New', monospace;
     letter-spacing: 0.03em;
 }
@@ -226,7 +227,6 @@ pre .sy0 {
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.0823529);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    /*padding-bottom: 0.5em;*/
 }
 #docs div div div {
     border-top: 0;
