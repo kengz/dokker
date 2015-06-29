@@ -18,7 +18,7 @@ gulp.task('watch', ['reload'], function() {
 })
 
 // gulp.task('build', exec.bind('some build command here'))
-gulp.task('build', exec.bind(wpath+'/node_modules/dokker/bin/dokker'))
+gulp.task('build', exec.bind((wpath+'/node_modules/dokker/bin/dokker').replace(/\s/, '\\ ')))
 // Reloading browserSync
 gulp.task('reload', ['build'], reload);
 
