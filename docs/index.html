@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="author" content="Dokker.js">
+  <meta name="description" content="This API documentation is built with Dokker.js at dokkerjs.com">
   <title>Dokker.js</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="styles.css" media="all">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
 </head>
 <body>
   <div class="toc-container">
-    <h2><code><a href="http://dokkerjs.com/">Dokker.js</a></code></h2>
+    <h2><code><a href=http://dokkerjs.com>Dokker.js</a></code></h2>
     <ul>
       <li><a href="#">Introduction</a></li>
-      <li><a href="https://github.com/oceanhouse21/dokker">Github Repository</a></li>
+      <li><a href=https://github.com/oceanhouse21/dokker/blob/master/dokker.js>Github Repository</a></li>
       <li><a href="tests.html">Test suite</a></li>
-      <li><a href="annotated/dokker.html">Annotated Source</a></li>
+      <li><a href=annotated/dokker.js>Annotated Source</a></li>
     </ul>
     
 <div>
@@ -53,9 +56,6 @@
 </ul>
 </div>
 <div>
-<h2 id="-methods-"><code>Methods</code></h2>
-</div>
-<div>
 <h2 id="-properties-"><code>Properties</code></h2>
 <ul>
 <li><a href="#Dokker-VERSION"><code>Dokker.VERSION</code></a></li>
@@ -67,14 +67,14 @@
     <div>  
       <p><img src="https://raw.githubusercontent.com/oceanhouse21/dokker/master/templates/logo.png" alt="dokker logo"></p>
 <p>Dokker.js creates professional Javascript code documentations.</p>
-<p><a href="http://dokkerjs.com">See Dokker.js documentation as example.</a> </p>
+<p><a href="http://dokkerjs.com">See Dokker.js documentation as example.</a></p>
 <p><a href="https://travis-ci.org/oceanhouse21/dokker"><img src="https://travis-ci.org/oceanhouse21/dokker.svg?branch=master" alt="Build Status"></a></p>
 <h2 id="features">Features</h2>
 <ul>
 <li>Create or <a href="http://dokkerjs.com/">HTML</a> or <a href="https://github.com/oceanhouse21/dokker/tree/master/docs#dokkerjs-api-documentation">markdown</a> documentation from <a href="http://usejsdoc.org/">JSDOC</a> tags</li>
 <li>Support for <a href="https://en.wikipedia.org/?title=Literate_programming">literate programming</a> documentation</li>
 <li>Live edit source code and watch changes</li>
-<li>Include link to your Github repositry</li>
+<li>Include link to your Github repository</li>
 <li>Customize your own templates with <a href="http://www.embeddedjs.com/">ejs</a> or use default style</li>
 <li>Create feature description from <a href="http://mochajs.org/">mocha test suite</a></li>
 <li>Automagically include your README.md into the documentation</li>
@@ -89,22 +89,35 @@
 </code></pre><h2 id="usage">Usage</h2>
 <p>After installation you can execute Dokker with the help of several terminal commands.</p>
 <p><strong>Bootstrap Dokker project</strong></p>
-<p>Dokker needs a configuration file to execute, such as a <a href="https://travis-ci.org/">.travis</a> or <a href="http://jshint.com/docs/">.jshintrc</a>. You can easily create .dokker.json file with the <code>./node_modules/dokker/init</code> command from the root directory of your project or copy a <a href="https://github.com/oceanhouse21/dokker/blob/master/.dokker.json">example file</a>.</p>
+<p>Dokker needs a configuration file to execute, such as a <a href="https://travis-ci.org/">.travis</a> or <a href="http://jshint.com/docs/">.jshintrc</a>. You can easily create .dokker.json file with the <code>./node_modules/dokker/bin/init</code> command from the root directory of your project or copy an <a href="https://github.com/oceanhouse21/dokker/blob/master/.dokker.json">example file</a>.</p>
 <p>Dokker provides a default template for your project. The template is based on an <a href="http://www.embeddedjs.com/">ejs</a> file. Either you use the default template or modify it. If you choose for the latter you can copy the <a href="https://github.com/oceanhouse21/dokker/tree/master/templates">templates directory</a> and tweak the ejs files how you like.</p>
 <p><strong>Create documentation</strong></p>
-<p>Creating a documentation is really simple with the help of Dokker. You just configure the <a href="https://github.com/oceanhouse21/dokker/blob/master/.dokker.json">.Dokker.json</a> file and execute <code>./node_modules/dokker/bin/dokker</code>. Then you&#x2019;re done.</p>
+<p>Creating a documentation is really simple with the help of Dokker. You just configure the <a href="https://github.com/oceanhouse21/dokker/blob/master/.dokker.json">.dokker.json</a> file and execute <code>./node_modules/dokker/bin/dokker</code>. Then you&#x2019;re done.</p>
 <p><strong>Live edit your documentation</strong></p>
-<p>If you want to work on your source file and see how the documentation evolves you can start <code>./node_modules/dokker/bin/watch</code> and a Node.js/Express server is started for you that serves your Dokker project at <a href="http://localhost:9000">localhost:9000</a>.</p>
-<p>If you want to use the live edit function please install the <a href="http://livereload.com/">LiveReload</a> plugin for your browser. You can then even start a <code>nodemon ./node_modules/bin/dokker</code> and whenever you hit save the HTML site is reloading. But before you might need <code>npm install -g nodemon</code>.</p>
-<p><strong>Deploy to Github Pagest</strong></p>
-<p>If you want to deploy your documentation to Github Pages, rung <code>./node_modules/dokker/gh-pages</code>. Finally a seperate branch, named <code>gh-pages</code> is created from the <code>docs</code> folder. That is enough for Github to serve your documentation. Please do not forget to <code>git commit</code> your changes before your run <code>gh-pages</code> command.</p>
+<p>If you want to work on your source file and see how the documentation evolves, you can do <code>./node_modules/dokker/bin/watch</code> and it will open a browser with live preview.</p>
+<!-- Node.js/Express server is started for you that serves your Dokker project at [localhost:9000](http://localhost:9000).
+
+If you want to use the live edit function please install the [LiveReload](http://livereload.com/) plugin for your browser. You can then even start a ```nodemon ./node_modules/bin/dokker``` and whenever you hit save the HTML site is reloading. But before you might need ```npm install -g nodemon```. -->
+<p><strong>Deploy to Github Pages</strong></p>
+<p>If you want to deploy your documentation to Github Pages, run <code>./node_modules/dokker/bin/gh-pages</code>. Finally a separate branch, named <code>gh-pages</code> is created from the <code>docs</code> folder. That is enough for Github to serve your documentation. Please do not forget to <code>git commit</code> your changes before your run <code>gh-pages</code> command.</p>
+<h2 id="dokker-in-the-wild">Dokker in the wild</h2>
+<p>Some examples by our users. Let us know what you did with Dokker too!</p>
+<ul>
+<li><a href="http://dokkerjs.com">Dokker.js</a></li>
+<li><a href="http://kengz.github.io/lomath/">lomath</a></li>
+</ul>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
-<li><a href="https://dokkerjs.com">API Documentation</a></li>
+<li><a href="http://dokkerjs.com">API Documentation</a></li>
 <li><a href="https://github.com/oceanhouse21/dokker/wiki/Changelog">Changelog</a></li>
 <li><a href="https://github.com/oceanhouse21/dokker/releases">Release Notes</a></li>
 <li><a href="https://github.com/oceanhouse21/dokker/wiki/Roadmap">Roadmap</a></li>
 <li><a href="https://github.com/oceanhouse21/dokker/wiki/Resources">More Resources</a></li>
+</ul>
+<h2 id="contributors">Contributors</h2>
+<ul>
+<li><a href="https://github.com/georgschlenkhoff">georgschlenkhoff</a></li>
+<li><a href="https://github.com/kengz">kengz</a></li>
 </ul>
 
       <h2>API documentation</h2>
@@ -113,7 +126,7 @@
 <h2 id="-github-pages-methods-"><code>&#x201C;Github Pages&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-dokker-ghpages-a-dokker-ghpages-"><a id="Dokker-ghPages"></a><code>Dokker.ghPages()</code></h3>
-<p><a href="#Dokker-ghPages">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L148" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-ghPages">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L152" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Runs a terminal shell with the git command to extract the docs branch
 into a seperate gh-pages branch and finally pushes that branch to Github,
 so that the Github page is updated.</p>
@@ -162,7 +175,7 @@ Dokker.injectTemplate(options)
 </div>
 <div>
 <h3 id="-a-id-dokker-jsdochtml-a-dokker-jsdochtml-options-"><a id="Dokker-jsdocHtml"></a><code>Dokker.jsdocHtml([options])</code></h3>
-<p><a href="#Dokker-jsdocHtml">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L278" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-jsdocHtml">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L282" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Create an HTML file from the Markdown file that was create with 
 <a href="#Dokker-jsdocMarkdown">Dokker.jsdocMarkdown()</a></p>
 <h4 id="arguments">Arguments</h4>
@@ -185,7 +198,7 @@ Dokker.jsdocHtml()
 </div>
 <div>
 <h3 id="-a-id-dokker-jsdocmarkdown-a-dokker-jsdocmarkdown-options-"><a id="Dokker-jsdocMarkdown"></a><code>Dokker.jsdocMarkdown([options])</code></h3>
-<p><a href="#Dokker-jsdocMarkdown">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L230" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-jsdocMarkdown">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L234" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Create a Markdown file from JSDoc tags.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -213,7 +226,7 @@ Dokker.jsdocMarkdown()
 <h2 id="-literate-programming-methods-"><code>&#x201C;Literate programming&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-dokker-literate-a-dokker-literate-options-"><a id="Dokker-literate"></a><code>Dokker.literate([options])</code></h3>
-<p><a href="#Dokker-literate">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L185" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-literate">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L189" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Create a styled HTML file from your source code with the help of <strong>docco</strong>
 module.</p>
 <h4 id="arguments">Arguments</h4>
@@ -241,7 +254,7 @@ Dokker.literate()
 <h2 id="-mocha-methods-"><code>&#x201C;Mocha&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-dokker-createtests-a-dokker-createtests-options-"><a id="Dokker-createTests"></a><code>Dokker.createTests([options])</code></h3>
-<p><a href="#Dokker-createTests">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L110" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-createTests">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L113" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Creates an HTML file to describe the features of your module from your
 <strong>Mocha</strong> tests. The module is using the mocha <strong>doc</strong> reporter to
 generate the HTML contents.</p>
@@ -268,7 +281,7 @@ Dokker.createTests(options)
 <h2 id="-utility-methods-"><code>&#x201C;Utility&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-dokker-configure-a-dokker-configure-options-"><a id="Dokker-configure"></a><code>Dokker.configure([options])</code></h3>
-<p><a href="#Dokker-configure">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L351" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-configure">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L355" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Helper function that takes a couple of options arguments and
 normalises them and subsequently returns them.</p>
 <h4 id="arguments">Arguments</h4>
@@ -309,7 +322,7 @@ Dokker.jsdocHtml()
 </div>
 <div>
 <h3 id="-a-id-dokker-copytemplate-a-dokker-copytemplate-options-"><a id="Dokker-copyTemplate"></a><code>Dokker.copyTemplate([options])</code></h3>
-<p><a href="#Dokker-copyTemplate">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L393" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-copyTemplate">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L397" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Copy the template to local directory so that one can make changes to ejs
 files.</p>
 <h4 id="arguments">Arguments</h4>
@@ -332,7 +345,7 @@ Dokker.copyTemplate()
 </div>
 <div>
 <h3 id="-a-id-dokker-init-a-dokker-init-"><a id="Dokker-init"></a><code>Dokker.init()</code></h3>
-<p><a href="#Dokker-init">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L423" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-init">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L431" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Create a .dokker.json file to bootstrap any Dokker project</p>
 <h4 id="returns">Returns</h4>
 <p><em>(Promise)</em>:  Returns a resolved promise if files were created.</p>
@@ -346,7 +359,7 @@ Dokker.copyTemplate()
 </div>
 <div>
 <h3 id="-a-id-dokker-watch-a-dokker-watch-"><a id="Dokker-watch"></a><code>Dokker.watch()</code></h3>
-<p><a href="#Dokker-watch">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L448" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
+<p><a href="#Dokker-watch">#</a> <a href="https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L456" title="View in source">&#x24C8;</a> [&#x24C9;][1]</p>
 <p>Starts a Node.js/Express webserver in docs directory to watch
 the build Dokker project</p>
 <h4 id="returns">Returns</h4>
@@ -359,9 +372,6 @@ the build Dokker project</p>
 </code></pre>
 <hr>
 </div>
-</div>
-<div>
-<h2 id="-methods-"><code>Methods</code></h2>
 </div>
 <div>
 <h2 id="-properties-"><code>Properties</code></h2>
