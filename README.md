@@ -47,13 +47,21 @@ Creating a documentation is really simple with the help of Dokker. You just conf
 
 **Live edit your documentation**
 
-If you want to work on your source file and see how the documentation evolves you can start ```./node_modules/dokker/bin/watch``` and a Node.js/Express server is started for you that serves your Dokker project at [localhost:9000](http://localhost:9000).
+If you want to work on your source file and see how the documentation evolves, you can do ```./node_modules/dokker/bin/watch``` and it will open a browser with live preview.
 
-If you want to use the live edit function please install the [LiveReload](http://livereload.com/) plugin for your browser. You can then even start a ```nodemon ./node_modules/bin/dokker``` and whenever you hit save the HTML site is reloading. But before you might need ```npm install -g nodemon```.
+<!-- Node.js/Express server is started for you that serves your Dokker project at [localhost:9000](http://localhost:9000).
+
+If you want to use the live edit function please install the [LiveReload](http://livereload.com/) plugin for your browser. You can then even start a ```nodemon ./node_modules/bin/dokker``` and whenever you hit save the HTML site is reloading. But before you might need ```npm install -g nodemon```. -->
 
 **Deploy to Github Pages**
 
 If you want to deploy your documentation to Github Pages, run ```./node_modules/dokker/bin/gh-pages```. Finally a separate branch, named ```gh-pages``` is created from the ```docs``` folder. That is enough for Github to serve your documentation. Please do not forget to ```git commit``` your changes before your run ```gh-pages``` command.
+
+## Dokker in the wild
+Some examples by our users. Let us know what you did with Dokker too!
+
+- [Dokker.js](http://dokkerjs.com)
+- [lomath](http://kengz.github.io/lomath/)
 
 ## Further Reading
 

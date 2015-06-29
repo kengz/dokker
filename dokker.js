@@ -26,7 +26,7 @@ var Dokker = {};
  * @memberOf Dokker
  * @type string
  */
-Dokker.VERSION = '0.1.0';
+Dokker.VERSION = '0.1.2';
 
 /**
  * Creates a HTML file that transcludes the HTML snippet that was created
@@ -266,7 +266,7 @@ Dokker.jsdocMarkdown = function (options) {
       var markdown = docdown({
         'path': tmpFile,
         'url': options.github,
-        'toc': 'categories',
+        'toc': 'categories'
       });
       return write(options.markdown, markdown, 'utf8');
     }).then(function() {
@@ -386,8 +386,9 @@ Dokker.configure = function(options) {
       data.jsdoc.template = (data.jsdoc.template) ? path.join(process.cwd(), data.jsdoc.template) : path.join(__dirname, 'templates/index.ejs.html');
       data.mocha.template = (data.mocha.template) ? path.join(process.cwd(), data.mocha.template) : path.join(__dirname, 'templates/tests.ejs.html');
       data.mocha.path = path.join(process.cwd(), data.dir, data.mocha.path);
+      // mocha.command commented out to fix build-breaking bug
       // specifies mocha command in .dokker.json; e.g. mocha -u tdd -R spec
-      data.mocha.command = path.join(process.cwd(), data.dir, data.mocha.command);
+      // data.mocha.command = path.join(process.cwd(), data.dir, data.mocha.command);
       data.literate.dir = path.join(process.cwd(), data.dir, data.literate.dir);
       data.jsdoc.markdown = path.join(process.cwd(), data.dir, data.jsdoc.markdown);
       data.jsdoc.html = path.join(process.cwd(), data.dir, data.jsdoc.html);
@@ -485,11 +486,13 @@ Dokker.init = function(){
 // Starts the Node.js/Express server to watch Dokker.js project
 // documentation.
 Dokker.watch = function(options) {
-  return new Promise(function(resolve, reject){ 
-    exec('DIR='+ options.dir + ' node ' + options.dir + '/app.js', function(error, stdout, stderr){
-      if(error) return reject(stderr);
-    });
-  });
+  var gulpex = require(__dirname + '/gulpfile.js').gulpex;
+  return gulpex();
+  // return new Promise(function(resolve, reject){ 
+  //   exec('DIR='+ options.dir + ' node ' + options.dir + '/app.js', function(error, stdout, stderr){
+  //     if(error) return reject(stderr);
+  //   });
+  // });
 };
 
 module.exports = Dokker;
