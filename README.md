@@ -25,10 +25,10 @@ Dokker.js creates professional Javascript code documentations.
 
 ## Installation
 
-Dokker is available as npm package. So the easiest way is to install dokker as local module into your project:
+Dokker is available as npm package. So the easiest way is to install dokker as global module into your project:
 
 ```
-npm install dokker
+npm install -g dokker
 ```
 
 ## Usage
@@ -37,25 +37,25 @@ After installation you can execute Dokker with the help of several terminal comm
 
 **Bootstrap Dokker project**
 
-Dokker needs a configuration file to execute, such as a [.travis](https://travis-ci.org/) or [.jshintrc](http://jshint.com/docs/). You can easily create .dokker.json file with the ```./node_modules/dokker/bin/init``` command from the root directory of your project or copy an [example file](https://github.com/oceanhouse21/dokker/blob/master/.dokker.json).
+Dokker needs a configuration file to execute, such as a [.travis](https://travis-ci.org/) or [.jshintrc](http://jshint.com/docs/). You can easily create .dokker.json file with the ```dokker-init``` command from the root directory of your project or copy an [example file](https://github.com/oceanhouse21/dokker/blob/master/.dokker.json).
 
 Dokker provides a default template for your project. The template is based on an [ejs](http://www.embeddedjs.com/) file. Either you use the default template or modify it. If you choose for the latter you can copy the [templates directory](https://github.com/oceanhouse21/dokker/tree/master/templates) and tweak the ejs files how you like.
 
 **Create documentation**
 
-Creating a documentation is really simple with the help of Dokker. You just configure the [.dokker.json](https://github.com/oceanhouse21/dokker/blob/master/.dokker.json) file and execute ```./node_modules/dokker/bin/dokker```. Then you're done.
+Creating a documentation is really simple with the help of Dokker. You just configure the [.dokker.json](https://github.com/oceanhouse21/dokker/blob/master/.dokker.json) file and execute ```dokker```. Then you're done.
 
 **Live edit your documentation**
 
-If you want to work on your source file and see how the documentation evolves, you can do ```./node_modules/dokker/bin/watch``` and it will open a browser with live preview.
+If you want to work on your source file and see how the documentation evolves, you can do ```dokker-watch``` and it will open a browser with live preview.
 
 <!-- Node.js/Express server is started for you that serves your Dokker project at [localhost:9000](http://localhost:9000).
 
-If you want to use the live edit function please install the [LiveReload](http://livereload.com/) plugin for your browser. You can then even start a ```nodemon ./node_modules/bin/dokker``` and whenever you hit save the HTML site is reloading. But before you might need ```npm install -g nodemon```. -->
+If you want to use the live edit function please install the [LiveReload](http://livereload.com/) plugin for your browser. You can then even start a ```nodemon docs/app.js``` and whenever you hit save the HTML site is reloading. But before you might need ```npm install -g nodemon```. -->
 
 **Deploy to Github Pages**
 
-If you want to deploy your documentation to Github Pages, run ```./node_modules/dokker/bin/gh-pages```. Finally a separate branch, named ```gh-pages``` is created from the ```docs``` folder. That is enough for Github to serve your documentation. Please do not forget to ```git commit``` your changes before your run ```gh-pages``` command.
+If you want to deploy your documentation to Github Pages, run ```gh-pages```. Finally a separate branch, named ```gh-pages``` is created from the ```docs``` folder. That is enough for Github to serve your documentation. Please do not forget to ```git commit``` your changes before your run ```gh-pages``` command.
 
 ## Dokker in the wild
 Some examples by our users. Let us know what you did with Dokker too!

@@ -2,6 +2,13 @@
   "name": "dokker",
   "version": "0.1.2",
   "description": "Dokker.js creates professional Javascript code documentations.",
+  "preferGlobal": true,
+  "bin": {
+    "dokker": "./bin/dokker",
+    "gh-pages": "./bin/gh-pages",
+    "dokker-init": "./bin/dokker-init",
+    "dokker-watch": "./bin/dokker-watch"
+  },
   "main": "dokker.js",
   "scripts": {
     "test": "mocha"
