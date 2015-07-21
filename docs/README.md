@@ -44,6 +44,12 @@
 
 <!-- div -->
 
+## `Methods`
+
+<!-- /div -->
+
+<!-- div -->
+
 ## `Properties`
 * <a href="#Dokker-VERSION">`Dokker.VERSION`</a>
 
@@ -125,7 +131,7 @@ Dokker.injectTemplate(options)
 <!-- div -->
 
 ### <a id="Dokker-jsdocHtml"></a>`Dokker.jsdocHtml([options])`
-<a href="#Dokker-jsdocHtml">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L282 "View in source") [&#x24C9;][1]
+<a href="#Dokker-jsdocHtml">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L288 "View in source") [&#x24C9;][1]
 
 Create an HTML file from the Markdown file that was create with 
 [Dokker.jsdocMarkdown()](#Dokker-jsdocMarkdown)
@@ -154,7 +160,7 @@ Dokker.jsdocHtml()
 <!-- div -->
 
 ### <a id="Dokker-jsdocMarkdown"></a>`Dokker.jsdocMarkdown([options])`
-<a href="#Dokker-jsdocMarkdown">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L234 "View in source") [&#x24C9;][1]
+<a href="#Dokker-jsdocMarkdown">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L237 "View in source") [&#x24C9;][1]
 
 Create a Markdown file from JSDoc tags.
 
@@ -264,7 +270,7 @@ Dokker.createTests(options)
 <!-- div -->
 
 ### <a id="Dokker-configure"></a>`Dokker.configure([options])`
-<a href="#Dokker-configure">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L355 "View in source") [&#x24C9;][1]
+<a href="#Dokker-configure">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L361 "View in source") [&#x24C9;][1]
 
 Helper function that takes a couple of options arguments and
 normalises them and subsequently returns them.
@@ -311,7 +317,7 @@ Dokker.jsdocHtml()
 <!-- div -->
 
 ### <a id="Dokker-copyTemplate"></a>`Dokker.copyTemplate([options])`
-<a href="#Dokker-copyTemplate">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L397 "View in source") [&#x24C9;][1]
+<a href="#Dokker-copyTemplate">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L403 "View in source") [&#x24C9;][1]
 
 Copy the template to local directory so that one can make changes to ejs
 files.
@@ -340,7 +346,7 @@ Dokker.copyTemplate()
 <!-- div -->
 
 ### <a id="Dokker-init"></a>`Dokker.init()`
-<a href="#Dokker-init">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L431 "View in source") [&#x24C9;][1]
+<a href="#Dokker-init">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L437 "View in source") [&#x24C9;][1]
 
 Create a .dokker.json file to bootstrap any Dokker project
 
@@ -361,7 +367,7 @@ Dokker.init()
 <!-- div -->
 
 ### <a id="Dokker-watch"></a>`Dokker.watch()`
-<a href="#Dokker-watch">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L456 "View in source") [&#x24C9;][1]
+<a href="#Dokker-watch">#</a> [&#x24C8;](https://github.com/oceanhouse21/dokker/blob/master/dokker.js#L462 "View in source") [&#x24C9;][1]
 
 Starts a Node.js/Express webserver in docs directory to watch
 the build Dokker project
@@ -379,6 +385,12 @@ Dokker.init()
 * * *
 
 <!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
+## `Methods`
 
 <!-- /div -->
 

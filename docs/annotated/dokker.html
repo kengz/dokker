@@ -174,7 +174,7 @@ the ‘literate’ in .dokker.json shall not require a source since it’s never
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> cmd = options.command || <span class="hljs-string">'mocha --reporter doc'</span>;
-    exec(cmd, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, stdout</span>) </span>{
+    exec(cmd, {cwd: process.cwd()}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, stdout</span>) </span>{
       <span class="hljs-keyword">if</span>(error) <span class="hljs-keyword">return</span> reject(error);
       tests = stdout;
       <span class="hljs-keyword">return</span> read(options.template, <span class="hljs-string">'utf8'</span>)
@@ -236,7 +236,10 @@ Github repository</p>
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
     <span class="hljs-keyword">var</span> tmpDir = path.join(process.cwd(), <span class="hljs-string">'/.tmp'</span>);
     <span class="hljs-keyword">var</span> tmpFile = path.join(tmpDir, options.source);
-    <span class="hljs-keyword">return</span> read(path.join(process.cwd(), options.source), <span class="hljs-string">'utf8'</span>)
+    <span class="hljs-keyword">var</span> sourceFile = (options.cwd) ?
+      path.join(process.cwd(), options.cwd, options.source) :
+      path.join(process.cwd(), options.source);
+    <span class="hljs-keyword">return</span> read(sourceFile, <span class="hljs-string">'utf8'</span>)
     .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
       <span class="hljs-keyword">var</span> source = data.replace(<span class="hljs-regexp">/^\s*(\*|\/\*).*[\r\n]/gm</span>, <span class="hljs-string">''</span>);
       <span class="hljs-keyword">return</span> Dokker.mkdir(tmpDir)
@@ -268,7 +271,10 @@ Github repository</p>
             <div class="content"><div class='highlight'><pre>Dokker.jsdocMarkdown = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{
     <span class="hljs-keyword">var</span> source, tmpFile, tmpDir;
-    <span class="hljs-keyword">return</span> read(path.join(process.cwd(), options.source), <span class="hljs-string">'utf8'</span>)
+    <span class="hljs-keyword">var</span> sourceFile = (options.cwd) ?
+      path.join(process.cwd(), options.cwd, options.source) :
+      path.join(process.cwd(), options.source);
+    <span class="hljs-keyword">return</span> read(sourceFile, <span class="hljs-string">'utf8'</span>)
     .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
       source = data.replace(<span class="hljs-regexp">/^\s*(\/\/).*[\r\n]/gm</span>, <span class="hljs-string">''</span>);
       tmpDir = path.join(process.cwd(), <span class="hljs-string">'/.tmp'</span>);
