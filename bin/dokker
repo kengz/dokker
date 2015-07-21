@@ -8,8 +8,6 @@ return Dokker.configure()
   options = data;
   return Dokker.mkdir(path.join(process.cwd(), options.dir));
 }).then(function() {
-  return Dokker.literate(options.literate);
-}).then(function() {
   return Dokker.jsdocMarkdown(options.jsdoc);
 }).then(function() {
   return Dokker.jsdocHtml(options.jsdoc);
@@ -17,6 +15,8 @@ return Dokker.configure()
   return Dokker.injectTemplate(options.jsdoc);
 }).then(function() {
   return Dokker.createTests(options.mocha);
+}).then(function() {
+  return Dokker.literate(options.literate);
 }).then(function() {
   console.log('Dokker executed successfully');
 }).done();
