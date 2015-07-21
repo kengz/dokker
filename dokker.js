@@ -129,7 +129,7 @@ Dokker.createTests = function(options) {
     var template, tests;
     // allows specification of mocha.command in .dokker.json, e.g. 'mocha -u tdd --reporter doc'
     var cmd = options.command || 'mocha --reporter doc';
-    exec(cmd, function(error, stdout) {
+    exec(cmd, {cwd: process.cwd()}, function(error, stdout) {
       if(error) return reject(error);
       tests = stdout;
       return read(options.template, 'utf8')
@@ -209,7 +209,10 @@ Dokker.literate = function (options) {
   return new Promise(function(resolve, reject) {
     var tmpDir = path.join(process.cwd(), '/.tmp');
     var tmpFile = path.join(tmpDir, options.source);
-    return read(path.join(process.cwd(), options.source), 'utf8')
+    var sourceFile = (options.cwd) ?
+      path.join(process.cwd(), options.cwd, options.source) :
+      path.join(process.cwd(), options.source);
+    return read(sourceFile, 'utf8')
     .then(function(data) {
       var source = data.replace(/^\s*(\*|\/\*).*[\r\n]/gm, '');
       return Dokker.mkdir(tmpDir)
@@ -254,7 +257,10 @@ Dokker.literate = function (options) {
 Dokker.jsdocMarkdown = function (options) {
   return new Promise(function(resolve, reject) {
     var source, tmpFile, tmpDir;
-    return read(path.join(process.cwd(), options.source), 'utf8')
+    var sourceFile = (options.cwd) ?
+      path.join(process.cwd(), options.cwd, options.source) :
+      path.join(process.cwd(), options.source);
+    return read(sourceFile, 'utf8')
     .then(function(data){
       source = data.replace(/^\s*(\/\/).*[\r\n]/gm, '');
       tmpDir = path.join(process.cwd(), '/.tmp');
