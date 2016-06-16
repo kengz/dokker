@@ -73,5 +73,7 @@ Some examples by our users. Let us know what you did with Dokker too!
 
 ## Contributors
 
- * [georgschlenkhoff](https://github.com/georgschlenkhoff)
+Dokker.js was originally created by [georgschlenkhoff](https://github.com/georgschlenkhoff), and transferred to [kengz](https://github.com/kengz) on 16 Jun 2016 for further development.
+
+ * [georgschlenkhoff](https://github.com/georgschlenkhoff) *(original author)*
  * [kengz](https://github.com/kengz)
